@@ -11,12 +11,19 @@ start();
 
 async function start() {
   try {
+    await login();
+    await post('Choo choo!');
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+async function login() {
+  try {
     await agent.login({
       identifier: process.env.BLUESKY_USERNAME,
       password: process.env.BLUESKY_PASSWORD,
     });
-
-    await post('Choo choo!');
   } catch (error) {
     console.error(error);
   }
